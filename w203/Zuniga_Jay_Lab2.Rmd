@@ -1,7 +1,7 @@
 ---
 title: "Zuniga_Jay_W203_S3_Week8_Lab2"
-author: "jay_zuniga@berkeley.edu"
-date: "2/26/2017"
+author: "@berkeley.edu"
+date: ""
 output: pdf_document
 ---
 m
