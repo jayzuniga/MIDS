@@ -1,5 +1,5 @@
 ---
-title: "Zuniga_Jay_W203_S3_Week8_Lab2"
+title: "W203_S3_Week8_Lab2"
 author: "@berkeley.edu"
 date: ""
 output: pdf_document
