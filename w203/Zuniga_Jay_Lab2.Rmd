@@ -1,0 +1,113 @@
+---
+title: "Zuniga_Jay_W203_S3_Week8_Lab2"
+author: "jay_zuniga@berkeley.edu"
+date: "2/26/2017"
+output: pdf_document
+---
+m
+1. Meanwhile, at the Unfair Coin Factory. . .
+You are given a bucket that contains 100 coins. 99 of these are fair coins, but one of them is a trick coin that
+always comes up heads. You select one coin from this bucket at random. Let T be the event that you select
+the trick coin. This means that P(T) = 0.01.
+a. To see if the coin you have is the trick coin, you flip it k times. Let Hk be the event that the coin comes
+up heads all k times. If you see this occur, what is the conditional probability that you have the trick
+coin? In other words, what is P(T|Hk).
+
+$$
+P(T|H_k) = \frac{P(T \cap H_k)}{P(H_k)}
+$$
+
+$$
+= \frac{2^k}{2^k + 99}
+$$
+b. How many heads in a row would you need to observe in order for the conditional probability that you
+have the trick coin to be higher than 99%?
+
+```{r}
+unfair_coin <- function(k) 
+               {
+                c <- 2^k/(2^k + 99);
+                return (c)
+                }
+i = 1
+while (i < 20) 
+  {p <- unfair_coin(i)
+   print (c(i, p))
+   i <- i + 1}
+```
+
+Around 14 heads, probability that it is the trick coint you are using is higher than 99%.
+
+2. Wise Investments
+You invest in two startup companies focused on data science. Thanks to your growing expertise in this area,
+each company will reach unicorn status (valued at $1 billion) with probability 3/4, independent of the other
+company. Let random variable X be the total number of companies that reach unicorn status. X can take
+on the values 0, 1, and 2. Note: X is what we call a binomial random variable with parameters n = 2 and
+p = 3/4.
+a. Give a complete expression for the probability mass function of X.
+
+$$
+p^n      \quad when n=1,2
+$$
+
+$$
+(1-p)    \quad when n=0
+$$
+
+$$
+0        \quad otherwise
+$$
+
+b. Give a complete expression for the cumulative probability function of X.
+
+$$
+\sum \frac{n!}{x!(n-x)!}p^x(1-p)^(n-x)
+$$
+c. Compute E(X).
+
+$$
+\sum x*f(x)
+$$
+
+2!/(0!(2-0)!)(1/4)^0(1-1/4)^(2-0) + 2!/(1!(2-1)!)(3/4)^1(1-3/4)^(2-1) + 2!/(1!(2-2)!)(3/4)^2(1-3/4)^(2-2)
+= .5625 + .375 + 1.125
+= 1.875
+
+
+d. Compute var(X).
+
+= (0-1.875)^2 + (1-1.875)^2 + (2-1.875)^2
+= 4.296875
+
+3. Relating Min and Max
+
+Continuous random variables X and Y have a joint distribution with probability density function,
+f(x, y) = (
+2, 0 < y < x < 1
+0, otherwise.
+You may wonder where you would find such a distribution. In fact, if A1 and A2 are independent random
+variables uniformly distributed on [0, 1], and you define X = max(A1, A2), Y = min(A1, A2), then X and Y
+will have exactly the joint distribution defined above.
+a. Draw a graph of the region for which X and Y have positive probability density.
+
+![Graph](/Users/jayz/Downloads/graph.png)
+
+b. Derive the marginal probability density function of X, fX(x).
+
+$$
+f_x(x) = \int_{-\infty}^{\infty}f(x,y)dy
+$$
+
+c. Derive the unconditional expectation of X.
+
+d. Derive the conditional probability density function of Y , conditional on X, fY |X(y|x)
+
+$$
+f_y|x(y|x) = \frac{f(x,y)}{f_x(x)}
+$$
+
+e. Derive the conditional expectation of Y , conditional on X, E(Y |X).
+
+f. Derive E(XY ). Hint: if you take an expectation conditional on X, X is just a constant inside the expectation. This means that E(XY |X) = XE(Y |X).
+
+g. Using the previous parts, derive cov(X, Y )
